@@ -8,6 +8,7 @@
   min-height: 500px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .atom-container {
@@ -31,6 +32,18 @@
   align-items: center;
   z-index: 10;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  animation: nucleusPulse 3s ease-in-out infinite;
+}
+
+@keyframes nucleusPulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  }
 }
 
 .particle {
@@ -44,20 +57,45 @@
 .proton {
   background: #ff4757;
   box-shadow: 0 0 10px #ff4757;
+  animation: protonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes protonGlow {
+  0% { 
+    box-shadow: 0 0 10px #ff4757;
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 15px #ff4757, 0 0 25px rgba(255, 71, 87, 0.3);
+    transform: scale(1.1);
+  }
 }
 
 .neutron {
   background: #747d8c;
   box-shadow: 0 0 10px #747d8c;
+  animation: neutronGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes neutronGlow {
+  0% { 
+    box-shadow: 0 0 10px #747d8c;
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 15px #747d8c, 0 0 25px rgba(116, 125, 140, 0.3);
+    transform: scale(1.1);
+  }
 }
 
 .electron-shell {
   position: absolute;
-  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border: 1px dashed rgba(55, 66, 250, 0.5);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 15px rgba(55, 66, 250, 0.2);
 }
 
 .electron {
@@ -67,6 +105,106 @@
   background: #3742fa;
   border-radius: 50%;
   box-shadow: 0 0 8px #3742fa;
+  animation: electronGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes electronGlow {
+  0% { 
+    box-shadow: 0 0 8px #3742fa;
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 15px #3742fa, 0 0 25px rgba(55, 66, 250, 0.4);
+    transform: scale(1.2);
+  }
+}
+
+/* ROTATING ELECTRON ANIMATIONS */
+.electron-shell:nth-child(2) .electron:nth-child(1) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron1 4s linear infinite;
+}
+
+.electron-shell:nth-child(2) .electron:nth-child(2) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron1 4s linear infinite;
+  animation-delay: -2s;
+}
+
+.electron-shell:nth-child(3) .electron:nth-child(1) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron2 6s linear infinite;
+}
+
+.electron-shell:nth-child(3) .electron:nth-child(2) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron2 6s linear infinite;
+  animation-delay: -2s;
+}
+
+.electron-shell:nth-child(3) .electron:nth-child(3) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron2 6s linear infinite;
+  animation-delay: -4s;
+}
+
+.electron-shell:nth-child(4) .electron:nth-child(1) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron3 8s linear infinite;
+}
+
+.electron-shell:nth-child(4) .electron:nth-child(2) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron3 8s linear infinite;
+  animation-delay: -2s;
+}
+
+.electron-shell:nth-child(4) .electron:nth-child(3) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron3 8s linear infinite;
+  animation-delay: -4s;
+}
+
+.electron-shell:nth-child(4) .electron:nth-child(4) {
+  animation: 
+    electronGlow 1.5s ease-in-out infinite alternate,
+    rotateElectron3 8s linear infinite;
+  animation-delay: -6s;
+}
+
+@keyframes rotateElectron1 {
+  from { 
+    transform: rotate(0deg) translateX(var(--orbit-radius, 70px)) rotate(0deg);
+  }
+  to { 
+    transform: rotate(360deg) translateX(var(--orbit-radius, 70px)) rotate(-360deg);
+  }
+}
+
+@keyframes rotateElectron2 {
+  from { 
+    transform: rotate(0deg) translateX(var(--orbit-radius, 110px)) rotate(0deg);
+  }
+  to { 
+    transform: rotate(-360deg) translateX(var(--orbit-radius, 110px)) rotate(360deg);
+  }
+}
+
+@keyframes rotateElectron3 {
+  from { 
+    transform: rotate(0deg) translateX(var(--orbit-radius, 150px)) rotate(0deg);
+  }
+  to { 
+    transform: rotate(360deg) translateX(var(--orbit-radius, 150px)) rotate(-360deg);
+  }
 }
 
 .atom-info {
@@ -84,22 +222,32 @@
 .particle-count span {
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
-  padding: 5px 10px;
+  padding: 8px 15px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  border-radius: 20px;
   font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.particle-count span:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .proton-count {
-  border-left: 3px solid #ff4757;
+  border-left: 4px solid #ff4757;
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.2);
 }
 
 .neutron-count {
-  border-left: 3px solid #747d8c;
+  border-left: 4px solid #747d8c;
+  box-shadow: 0 0 15px rgba(116, 125, 140, 0.2);
 }
 
 .electron-count {
-  border-left: 3px solid #3742fa;
+  border-left: 4px solid #3742fa;
+  box-shadow: 0 0 15px rgba(55, 66, 250, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -118,6 +266,21 @@
   
   .particle-count span {
     font-size: 0.8rem;
-    padding: 4px 8px;
+    padding: 6px 12px;
+  }
+  
+  .nucleus {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .particle {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .electron {
+    width: 5px;
+    height: 5px;
   }
 }
