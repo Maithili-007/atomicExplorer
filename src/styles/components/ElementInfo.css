@@ -1,0 +1,159 @@
+.element-info {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.element-info h3 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  text-align: center;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #e74c3c;
+  padding-bottom: 10px;
+}
+
+.element-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.element-symbol-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.element-symbol {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.atomic-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 0.7rem;
+  font-weight: normal;
+}
+
+.mass-number {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 0.7rem;
+  font-weight: normal;
+}
+
+.element-name h4 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.element-properties {
+  display: grid;
+  gap: 10px;
+}
+
+.property {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.property label {
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.property span {
+  font-weight: 600;
+}
+
+.neutral {
+  color: #2ecc71;
+}
+
+.positive {
+  color: #e74c3c;
+}
+
+.negative {
+  color: #3498db;
+}
+
+.learning-points {
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.learning-points h4 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.learning-points h4::before {
+  content: "💡";
+  font-size: 1.2rem;
+}
+
+.learning-points ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.learning-points li {
+  margin-bottom: 8px;
+  color: #34495e;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .element-info {
+    padding: 20px;
+  }
+  
+  .element-symbol-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .element-symbol {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+  
+  .element-name h4 {
+    font-size: 1.3rem;
+  }
+  
+  .property {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
